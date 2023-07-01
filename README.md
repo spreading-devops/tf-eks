@@ -4,14 +4,12 @@ Terraform AWS Provider version 5.6.2
 
 ## AWS required services and resources
 
-### Create two S3 buckets to Store Terraform State and two DynamoDB tables to Store Terraform lock
+### Create S3 buckets and DynamoDB tables to handle terraform backend
 
 ```bash
 $ cd shared-state
 $ vim terraform.tfvars
 ...
-
-
 $ terraform init
 $ terraform plan
 $ terraform apply
@@ -23,8 +21,6 @@ $ terraform apply
 $ cd dev-vpc
 $ vim terraform.tfvars
 ...
-
-
 $ terraform init
 $ terraform plan
 $ terraform apply
@@ -36,8 +32,6 @@ $ terraform apply
 $ cd dev
 $ vim terraform.tfvars
 ...
-
-
 $ terraform init
 $ terraform plan
 $ terraform apply
