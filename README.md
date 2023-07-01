@@ -42,7 +42,7 @@ $ terraform apply
 ```bash
 #$ aws eks --region $(terraform output aws_region) update-kubeconfig --name $(terraform output cluster_full_name)
 $ aws eks --region "us-east-1" update-kubeconfig --name "dev-matheuscarino-default"
-#$ terraform output authconfig | kubectl -n kube-system create -f –
+#$ terraform output authconfig | kubectl -n kube-system create -f -
 $ kubectl -n kube-system create -f autoconfig.yaml
 $ kubectl get nodes -o wide
 ```
