@@ -8,7 +8,7 @@ Terraform AWS Provider version 5.6.2
 
 ```bash
 $ cd shared-state
-$ vim terraform.tfvars
+$ vim terraform.tfvars # CONFIGURE
 ...
 $ terraform init
 $ terraform plan
@@ -19,7 +19,7 @@ $ terraform apply
 
 ```bash
 $ cd dev-vpc
-$ vim terraform.tfvars
+$ vim terraform.tfvars # CONFIGURE
 ...
 $ terraform init
 $ terraform plan
@@ -30,7 +30,7 @@ $ terraform apply
 
 ```bash
 $ cd dev
-$ vim terraform.tfvars
+$ vim terraform.tfvars # CONFIGURE
 ...
 $ terraform init
 $ terraform plan
@@ -47,10 +47,19 @@ $ kubectl -n kube-system create -f autoconfig.yaml
 $ kubectl get nodes -o wide
 ```
 
-###
+## Destroy EKS cluster
 
 ```bash
-
+$ cd dev
+$ terraform destroy --auto-approve
+$ cd ../dev-vpc/
+$ terraform destroy --auto-approve
+$ cd ../shared-state
+$ aws s3 rm s3://dev-matheuscarino-terraform-state --recursive
+$ aws s3 rm s3://dev-matheuscarino-vpc-terraform-state --recursive
+$ aws s3 rb s3://dev-matheuscarino-terraform-state --force
+$ aws s3 rb s3://dev-matheuscarino-vpc-terraform-state --force
+$ terraform destroy --auto-approve
 ```
 
 ###
