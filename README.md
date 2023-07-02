@@ -30,7 +30,7 @@ $ terraform apply
 
 ```bash
 $ cd dev
-$ vim terraform.tfvars # CONFIGURE
+$ vim terraform.tfvars # CONFIGURE THE VPC-ID AND PUBLIC/PRIVATE SUBNETS
 ...
 $ terraform init
 $ terraform plan
@@ -40,10 +40,16 @@ $ terraform apply
 ### Retrieve the cluster kubeconfig file
 
 ```bash
+## Get kubeconfig from AWS EKS cluster created
 #$ aws eks --region $(terraform output aws_region) update-kubeconfig --name $(terraform output cluster_full_name)
 $ aws eks --region "us-east-1" update-kubeconfig --name "dev-matheuscarino-default"
-#$ terraform output authconfig | kubectl -n kube-system create -f -
+## Retrieve authconfig and Copy his content
+$ terraform output authconfig
+## Create autoconfig.yaml and Put the output from last command inside
+$ vim autoconfig.yaml
+## Create the needed ConfigMap with this file
 $ kubectl -n kube-system create -f autoconfig.yaml
+## Checkout your Worker Nodes
 $ kubectl get nodes -o wide
 ```
 
