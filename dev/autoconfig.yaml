@@ -5,7 +5,7 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: "arn:aws:iam::822786935955:role/dev-matheuscarino-default-workers"
+    - rolearn: "arn:aws:iam::<AWS-ACCOUNT-ID>:role/<ROLE-NAME>" ## Put here the Role name created by Terraform in modules/eks-workers/iam.tf
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
